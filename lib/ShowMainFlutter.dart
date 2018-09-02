@@ -1,23 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_program/HomePage.dart';
 import 'package:flutter/material.dart';
-
-/*void main() => runApp(new MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter Demo',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: new HomePage(),
-    );
-  }
-}*/
-
+import 'package:flutter_program/fragment_five/FiveFramgent.dart';
+import 'package:flutter_program/fragment_four/FourFramgent.dart';
+import 'package:flutter_program/fragment_one/OrderPagerFragment.dart';
+import 'package:flutter_program/fragment_second/SencondFramgent.dart';
+import 'package:flutter_program/fragment_six/SixFramgent.dart';
+import 'package:flutter_program/fragment_thread/ThreadFramgent.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
 
@@ -45,10 +34,10 @@ class _HomePageState extends State<HomePage> {
   Text getTabTitle(int curIndex) {
     if (curIndex == _currentPageIndex) {
       return new Text(appBarTitles[curIndex],
-          style: new TextStyle(fontSize: 14.0, color: const Color(0xff1296db)));
+          style: new TextStyle(fontSize: 13.0, color: const Color(0xff1296db)));
     } else {
       return new Text(appBarTitles[curIndex],
-          style: new TextStyle(fontSize: 14.0, color: Colors.black));
+          style: new TextStyle(fontSize: 13.0, color: Colors.grey));
     }
   }
 
@@ -63,27 +52,23 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-
   void initData() {
     tabImages = [
-      [getTabImage('images/home.png'), getTabImage('images/home_selected.png')],
-      [getTabImage('images/find.png'), getTabImage('images/find_selected.png')],
-      [getTabImage('images/mine.png'), getTabImage('images/mine_selected.png')],
-      [
-        getTabImage('images/mines.png'),
-        getTabImage('images/mines_selected.png')
-      ],
-      [getTabImage('images/home.png'), getTabImage('images/home_selected.png')],
-      [getTabImage('images/find.png'), getTabImage('images/find_selected.png')],
+      [getTabImage('images/mipmap-hdpi-v4/gteq_icon_statistics_normal.png'), getTabImage('images/mipmap-hdpi-v4/gteq_icon_statistics_pressed.png')],
+      [getTabImage('images/mipmap-hdpi-v4/gteq_icon_order_normal.png'), getTabImage('images/mipmap-hdpi-v4/gteq_icon_order_pressed.png')],
+      [getTabImage('images/mipmap-hdpi-v4/gteq_icon_eq_normal.png'), getTabImage('images/mipmap-hdpi-v4/gteq_icon_eq_pressed.png')],
+      [getTabImage('images/mipmap-hdpi-v4/gteq_icon_pj_normal.png'), getTabImage('images/mipmap-hdpi-v4/gteq_icon_pj_pressed.png')],
+      [getTabImage('images/mipmap-hdpi-v4/gteq_icon_plan_normal.png'), getTabImage('images/mipmap-hdpi-v4/gteq_icon_plan_pressed.png')],
+      [getTabImage('images/mipmap-hdpi-v4/gteq_icon_mine_normal.png'), getTabImage('images/mipmap-hdpi-v4/gteq_icon_mine_pressed.png')],
     ];
 
     _pageList = new List();
-    _pageList.add(new HomePager("工单"));
-    _pageList.add(new HomePager("为了"));
-    _pageList.add(new HomePager("设备管理"));
-    _pageList.add(new HomePager("设备检查"));
-    _pageList.add(new HomePager("计划"));
-    _pageList.add(new HomePager("我的"));
+    _pageList.add(new OrderPagerFragment("统计"));//工单
+    _pageList.add(new SencondFragment("工单"));
+    _pageList.add(new ThreadFramgent("设备管理"));
+    _pageList.add(new FourFramgent("设备检查"));
+    _pageList.add(new FiveFramgent("计划"));
+    _pageList.add(new SixFragment("我的"));
   }
 
   @override
@@ -95,11 +80,11 @@ class _HomePageState extends State<HomePage> {
         actions: <Widget>[
           Padding(
             child: Image.asset(
-              "images/sanscl.png",
+              "images/mipmap-hdpi-v4/gteq_icon_scan.png",
               width: 28.0,
               height: 28.0,
             ),
-            padding: new EdgeInsets.only(right: 10.0),
+            padding: new EdgeInsets.only(right: 13.0),
           ),
         ],
         elevation: 2.0,
@@ -134,7 +119,7 @@ class _HomePageState extends State<HomePage> {
         onTap: (int index) {
           //_pageController.jumpToPage(index); 没有动画的页面切换
           _pageController.animateToPage(index,
-              duration: new Duration(seconds: 2),
+              duration: new Duration(milliseconds:500),
               curve: new ElasticOutCurve(0.8));
           _pageChange(index);
         },
