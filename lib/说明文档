@@ -1,1 +1,87 @@
 1.app打包:flutter build apk
+
+POST http://118.25.173.88:8080/tpm/workorder/repairsheetlist/myApplyRepair HTTP/1.1
+Cookie: JSESSIONID=2a5139db-26a7-491f-b9c9-fac0b18a90f5; rememberMe=deleteMe
+limit=10&page=1
+
+Response Header：
+Connection : close
+Set-Cookie : rememberMe=deleteMe; Path=/tpm; Max-Age=0; Expires=Mon, 03-Sep-2018 03:38:06 GMT,JSESSIONID=ab543be4-f716-4d42-9688-4d7dd9426d2a; Path=/tpm; HttpOnly
+Content-Length : 7260
+Date : Tue, 04 Sep 2018 03:38:06 GMT
+Content-Type : text/html
+
+
+public static final String SPAREPART_LIST = "/spare/sparepart/list";//获取备件列表
+public static final String TPM_LIST = "/tpm/equipment/list";//获取设备列表
+public static final String TPM_TOTAL = "/tpm/equipment/total";//获取设备总数
+public static final String EqiupmentInfo = "/tpm/equipment/info/";//获取设备详情
+
+public static final String EXPERIENCE_LIST ="/tpm/experience/list";//获取 故障经验 列表
+public static final String SAVE_EQ = "/tpm/equipment/save";//保存设备
+
+
+public static final String COMMIT_EXCEPTION_INFO = "/sys/mobile/exception/insertList";//提交故障信息
+
+public static final String UPDATE_EQUIMENT ="/tpm/equipment/update";//更新设备
+public static final String UPDATE_MAINTAIN ="/workorder/maintainworkorder/update";//更新保养单
+
+public static final String APK_VERSION = "/sys/apkmanager/select";//获取APK 版本号
+public static final String UPLOAD_FILE = "/sys/sysfile/uploadEx";//文件上传接口
+public static final String DOWNLOAD_FILE = "/sys/sysfile/downloadM";//文件下载接口
+
+public static final String MAINTAIN_WORKORDER = "/workorder/maintainworkorder/list"; //获取 保养计划 列表
+public static final String EQUIPMENT_TYPE = "/tpm/equipmenttype/list"; //获取 设备类别 列表
+public static final String SYS_DEPT = "/sys/dept/listEx";//获取部门信息 列表
+public static final String SYS_USER = "/sys/user/list";//获取人员信息 列表
+public static final String SYS_DICT = "/sys/dict/list";//获取字典信息 列表   /sys/user/password
+public static final String CHANGE_PASSWORD = "/sys/user/password";//修改密码
+
+//我得工单 模块
+public static final String GET_MY_SHEET = "/workorder/repairsheetlist/getOrderMain";//获取我的工单
+public static final String GET_MY_SHEET_PAGE = "/workorder/repairsheetlist/getOrderMainPage";//获取我的工单 分页
+public static final String GET_UN_VERIFY_SHEET = "/workorder/repairsheetlist/getUnVerifyList";//待审核工单
+public static final String GET_UN_DISTRIBUTION = "/workorder/repairsheetlist/getUnDistribution";//待接收工单
+public static final String GET_UN_BEGIN_SHEET = "/workorder/repairsheetlist/getUnBeginSheet";//获取待执行工单
+public static final String GET_REPAIR_LIST = "/workorder/repairsheetlist/getRepairSheet";//获取维修单列表
+public static final String GET_VERIFY_REPAIR = "/workorder/repairsheetlist/getVerifyRepair";//获取维修验证列表
+public static final String MY_REPAIR_SHEET = "/workorder/repairsheetlist/myRepairSheet";//我的维修记录
+public static final String MY_APPLY_REPAIR = "/workorder/repairsheetlist/myApplyRepair";//我的申请记录
+public static final String DELETE_SHEET ="/workorder/repairsheetlist/mDelete";//撤销维修单
+public static final String UPDATE_SHEET ="/workorder/repairsheetlist/update";//更新维修单
+public static final String SAVE_BUG = "/workorder/repairsheetlist/mSave";//保存维修单
+public static final String GET_PAUSE_REPAIR_SHEET_LIST = "/workorder/repairsheetlist/getPauseSheetList";//获取暂停 维修单 列表
+public static final String SET_PAUSE_REPAIR_SHEET_LIST = "/workorder/repairsheetlist/myRepairSheetPauseAndResume";//更新 工单状态 与 维修历史记录 状态
+public static final String GET_REPAIR_SHEET_LIST_STATE_BY_ID = "/workorder/repairsheetlist/myRepairSheetPauseAndResumeStateById";// 根据 工单ID 获取 最新历史记录
+
+//报修/维修 统计模块
+public static final String GET_DEPT_REPAIR_CREATED_COUNT = "/statistics/workorder/dept/repair/createTotal";//获取部门报修数量
+public static final String GET_DEPT_REPAIR_PROCESS_COUNT = "/statistics/workorder/dept/repair/processTotal";//获取部门维修数量
+public static final String GET_DEPT_REPAIR_CREATED_WORKORDER_LIST = "/statistics/workorder/dept/repair/createWorkOrder/list";//获取部门报修工单
+public static final String GET_DEPT_REPAIR_PROCESS_WORKORDER_LIST = "/statistics/workorder/dept/repair/processWorkOrder/list";//获取部门维修工单
+
+//工作量 统计模块
+public static final String GET_DEPT_WORKLOAD_COUNT = "/statistics/workload/dept/workloadTotal";//获取部门工作量合计
+public static final String GET_DEPT_WORKLOAD_LIST  = "/statistics/workload/deptUser/workloadTotal/list";//获取部门人员工作量合计列表
+
+//备件 统计模块
+public static final String GET_SPAREPART_USE_TOTAL = "/statistics/sparepart/useTotal"; //获取备件领用合计
+public static final String GET_SPAREPART_DEPT_USE_TOTAL = "/statistics/sparepart/dept/useTotal/list"; //获取部门备件领用合计列表
+
+//保养`巡检  统计模块
+public static final String GET_EQUIPMENT_ROTING_INSPECTION_TOTAL = "/statistics/workorder/equipment/routingInspectionTotal";//获取设备巡检合计
+public static final String GET_EQUIPMENT_MAINTAIN_TOTAL = "/statistics/workorder//equipment/maintainTotal";                 //获取设备保养合计
+public static final String GET_EQUIPMENT_MAINTAIN_TOTAL_LIST = "/statistics/workorder/dept/equipment/maintainTotal/list"; //获取部门设备保养合计列表
+public static final String GET_EQUIPMENT_ROUTING_INSPECTION_TOTAL_LIST = "/statistics/workorder/dept/equipment/routingInspectionTotal/list"; //获取部门设备巡检合计列表
+
+//巡检模块
+public static final String GET_ROUTING_INSPECTION_LIST = "/workorder/routinginspectionlist/mlist";//获取巡检工单 列表属于我的
+public static final String UPDATE_ROUTING_INSPECTION_LIST = "/workorder/routinginspectionlist/update";//更新巡检工单
+
+//获取离线数据接口
+public static final String GET_OFFLINE_Data = "//workorder/repairsheetlist/getOfflineData";
+
+public static final String GET_MANUFACTURER_LIST = "/tpm/firminfo/list";//获取厂商信息
+
+
+带有列表的请求参数 : limit : 一页总共条数  page : 当前第几页 ,这个仅对于列表类型的有效

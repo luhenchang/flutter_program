@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_program/fragment_second/bean/SecondBean.dart';
+import 'package:flutter_program/fragment_six/view/AboutOurPager.dart';
+import 'package:flutter_program/fragment_six/view/FaultAplayPager.dart';
 
 class SixFragment extends StatefulWidget {
   String title;
@@ -15,6 +17,8 @@ class SixFragment extends StatefulWidget {
 class _SixFragmentState extends State<SixFragment> {
   String title;
   List<SecondBean> mdata = new List();
+
+  bool backgroundcolor = true;
 
   _SixFragmentState(String title) {
     this.title = title;
@@ -54,7 +58,9 @@ class _SixFragmentState extends State<SixFragment> {
                           ),
                         ),
                         Container(
-                          padding: new EdgeInsets.only(left: 13.0,),
+                          padding: new EdgeInsets.only(
+                            left: 13.0,
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -93,10 +99,20 @@ class _SixFragmentState extends State<SixFragment> {
                             const Radius.circular(6.0),
                           ),
                         ),
-                        child: Container(
-                          child: Text(
-                            "注销",
-                            style: TextStyle(color: Colors.blue),
+                        child: Material(
+                          child: InkWell(
+                            highlightColor: Colors.lightBlueAccent,
+                            splashColor: Colors.red,
+                            radius: 111.0,
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Container(
+                              child: Text(
+                                "注销",
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -104,51 +120,70 @@ class _SixFragmentState extends State<SixFragment> {
                   ],
                 ),
               ),
-             Container(
-                color:Colors.white,
-                margin:new EdgeInsets.only(top:8.0),
-                padding: new EdgeInsets.only(left: 10.0, right: 7.0,),
-                height: 52.0,
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      child: new Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_icon_main_myorder.png",
-                            width: 20.0,
-                            height: 20.0,
-                          ),
-                          Container(
-                            padding: new EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              "我的保修申请",
-                              style: TextStyle(fontSize: 16.0),
+              InkWell(
+                onTap:(){
+                  Navigator.of(context).push(new PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return new  FaultAplayPager();
+                    },
+                  ));
+                },
+                child: Container(
+                  color: Colors.white,
+                  margin: new EdgeInsets.only(top: 8.0),
+                  padding: new EdgeInsets.only(
+                    left: 10.0,
+                    right: 7.0,
+                  ),
+                  height: 52.0,
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        child: new Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/mipmap-xhdpi-v4/gteq_icon_main_myorder.png",
+                              width: 20.0,
+                              height: 20.0,
                             ),
-                          ),
-                        ],
+                            Container(
+                              padding: new EdgeInsets.only(left: 10.0),
+                              child: Text(
+                                "我的保修申请",
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: new Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_icon_main_go.png",
-                            height: 15.0,
-                            width: 18.0,
-                          ),
-                        ],
+                      Container(
+                        child: new Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/mipmap-xhdpi-v4/gteq_icon_main_go.png",
+                              height: 15.0,
+                              width: 18.0,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-              Container(color:Colors.black12,height:1.0,width:screen_width,),
               Container(
-                color:Colors.white,
-                padding: new EdgeInsets.only(left: 10.0, right: 7.0,),
+                color: Colors.black12,
+                height: 1.0,
+                width: screen_width,
+              ),
+              Container(
+                color: Colors.white,
+                padding: new EdgeInsets.only(
+                  left: 10.0,
+                  right: 7.0,
+                ),
                 height: 52.0,
                 alignment: Alignment.center,
                 child: Row(
@@ -186,12 +221,19 @@ class _SixFragmentState extends State<SixFragment> {
                   ],
                 ),
               ),
-              Container(color:Colors.black12,height:1.0,width:screen_width,),
+              Container(
+                color: Colors.black12,
+                height: 1.0,
+                width: screen_width,
+              ),
               //第三部分
               Container(
-                margin:new EdgeInsets.only(top:8.0),
-                color:Colors.white,
-                padding: new EdgeInsets.only(left: 10.0, right: 7.0,),
+                margin: new EdgeInsets.only(top: 8.0),
+                color: Colors.white,
+                padding: new EdgeInsets.only(
+                  left: 10.0,
+                  right: 7.0,
+                ),
                 height: 52.0,
                 alignment: Alignment.center,
                 child: Row(
@@ -229,55 +271,79 @@ class _SixFragmentState extends State<SixFragment> {
                   ],
                 ),
               ),
-              Container(color:Colors.black12,height:0.7,width:screen_width,),
               Container(
-                color:Colors.white,
-                padding: new EdgeInsets.only(left: 10.0, right: 7.0,),
-                height: 52.0,
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      child: new Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_icon_main_myorder.png",
-                            width: 20.0,
-                            height: 20.0,
-                          ),
-                          /*-images/mipmap-xhdpi-v4/gteq_icon_main_syn.png
+                color: Colors.black12,
+                height: 0.7,
+                width: screen_width,
+              ),
+              InkWell(
+                onTap: () {
+                  //设备管理
+                  Navigator.of(context).push(new PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return new AboutOurPager("hah");
+                    },
+                  ));
+                },
+                child: Container(
+                  color: Colors.white,
+                  padding: new EdgeInsets.only(
+                    left: 10.0,
+                    right: 7.0,
+                  ),
+                  height: 52.0,
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        child: new Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/mipmap-xhdpi-v4/gteq_icon_main_myorder.png",
+                              width: 20.0,
+                              height: 20.0,
+                            ),
+                            /*-images/mipmap-xhdpi-v4/gteq_icon_main_syn.png
         - images/mipmap-xhdpi-v4/gteq_icon_main_tool.png
         - images/mipmap-xhdpi-v4/gteq_icon_main_update.png
         - images/mipmap-xhdpi-v4/gteq_icon_main_our.png*/
-                          Container(
-                            padding: new EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              "同步数据",
-                              style: TextStyle(fontSize: 16.0),
+                            Container(
+                              padding: new EdgeInsets.only(left: 10.0),
+                              child: Text(
+                                "管理工具",
+                                style: TextStyle(fontSize: 16.0),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: new Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_icon_main_go.png",
-                            height: 15.0,
-                            width: 18.0,
-                          ),
-                        ],
+                      Container(
+                        child: new Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/mipmap-xhdpi-v4/gteq_icon_main_go.png",
+                              height: 15.0,
+                              width: 18.0,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-              Container(color:Colors.black12,height:0.7,width:screen_width,),
               Container(
-                color:Colors.white,
-                padding: new EdgeInsets.only(left: 10.0, right: 7.0,),
+                color: Colors.black12,
+                height: 0.7,
+                width: screen_width,
+              ),
+              Container(
+                color: Colors.white,
+                padding: new EdgeInsets.only(
+                  left: 10.0,
+                  right: 7.0,
+                ),
                 height: 52.0,
                 alignment: Alignment.center,
                 child: Row(
@@ -315,10 +381,17 @@ class _SixFragmentState extends State<SixFragment> {
                   ],
                 ),
               ),
-              Container(color:Colors.black12,height:0.7,width:screen_width,),
               Container(
-                color:Colors.white,
-                padding: new EdgeInsets.only(left: 10.0, right: 7.0,),
+                color: Colors.black12,
+                height: 0.7,
+                width: screen_width,
+              ),
+              Container(
+                color: Colors.white,
+                padding: new EdgeInsets.only(
+                  left: 10.0,
+                  right: 7.0,
+                ),
                 height: 52.0,
                 alignment: Alignment.center,
                 child: Row(
@@ -356,45 +429,69 @@ class _SixFragmentState extends State<SixFragment> {
                   ],
                 ),
               ),
-              Container(color:Colors.black12,height:0.7,width:screen_width,),
               Container(
-                color:Colors.white,
-                padding: new EdgeInsets.only(left: 10.0, right: 7.0,),
-                height: 52.0,
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      child: new Row(
+                color: Colors.black12,
+                height: 0.7,
+                width: screen_width,
+              ),
+              Material(
+                //带给我们Material的美丽风格美滋滋。你也多看看这个布局
+                elevation: 2.0,
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(new PageRouteBuilder(
+                      pageBuilder: (BuildContext context, _, __) {
+                        return new AboutOurPager("hah");
+                      },
+                    ));
+                  },
+                  splashColor: Colors.black12,
+                  child: Ink(
+                    height: 50.0,
+                    child: Container(
+                      color: Colors.white,
+                      padding: new EdgeInsets.only(
+                        left: 10.0,
+                        right: 7.0,
+                      ),
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_icon_main_our.png",
-                            width: 20.0,
-                            height: 20.0,
+                          Container(
+                            child: new Row(
+                              children: <Widget>[
+                                Image.asset(
+                                  "images/mipmap-xhdpi-v4/gteq_icon_main_our.png",
+                                  width: 20.0,
+                                  height: 20.0,
+                                ),
+                                Container(
+                                  padding: new EdgeInsets.only(left: 10.0),
+                                  child: Text(
+                                    "关于我们",
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           Container(
-                            padding: new EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              "关于我们",
-                              style: TextStyle(fontSize: 16.0),
+                            child: new Row(
+                              children: <Widget>[
+                                Image.asset(
+                                  "images/mipmap-xhdpi-v4/gteq_icon_main_go.png",
+                                  height: 15.0,
+                                  width: 18.0,
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Container(
-                      child: new Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_icon_main_go.png",
-                            height: 15.0,
-                            width: 18.0,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ],

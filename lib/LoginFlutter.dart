@@ -58,9 +58,11 @@ class _LoginFlutterState extends State<LoginFlutter> {
     });
   }
 
-  _add(var servers, var username) async {
+  _add(var servers, var username,String coockies) async {
     final SharedPreferences prefs = await _prefs;
     setState(() {
+      print('1='+coockies);
+      prefs.setString('Cookie',"JSESSIONID="+coockies);
       prefs.setString("lcserver", servers);
       prefs.setString("lcusername", username);
     });
@@ -388,7 +390,7 @@ class _LoginFlutterState extends State<LoginFlutter> {
       // LoginBean loginBean = new LoginBean.fromJson(userMap);
       //  print('Howdy, ${loginBean.msg}!');
       if (response.data["msg"] == "success") {
-        _add(localservers, userName);
+        _add(localservers, userName,mlistheader[2].toString().split(";")[0].split("=")[1].toString());
         Navigator.of(context).push(new PageRouteBuilder(
           opaque: false,
           pageBuilder: (BuildContext context, _, __) {
