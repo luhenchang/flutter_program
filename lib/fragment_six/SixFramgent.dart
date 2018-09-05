@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_program/fragment_second/bean/SecondBean.dart';
 import 'package:flutter_program/fragment_six/view/AboutOurPager.dart';
 import 'package:flutter_program/fragment_six/view/FaultAplayPager.dart';
+import 'package:flutter_program/fragment_six/view/TodayRepairPager.dart';
 
 class SixFragment extends StatefulWidget {
   String title;
@@ -121,10 +122,10 @@ class _SixFragmentState extends State<SixFragment> {
                 ),
               ),
               InkWell(
-                onTap:(){
+                onTap: () {
                   Navigator.of(context).push(new PageRouteBuilder(
                     pageBuilder: (BuildContext context, _, __) {
-                      return new  FaultAplayPager();
+                      return new FaultAplayPager();
                     },
                   ));
                 },
@@ -178,47 +179,57 @@ class _SixFragmentState extends State<SixFragment> {
                 height: 1.0,
                 width: screen_width,
               ),
-              Container(
-                color: Colors.white,
-                padding: new EdgeInsets.only(
-                  left: 10.0,
-                  right: 7.0,
-                ),
-                height: 52.0,
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      child: new Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_icon_main_repairlist.png",
-                            width: 20.0,
-                            height: 20.0,
-                          ),
-                          Container(
-                            padding: new EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              "我的维修记录",
-                              style: TextStyle(fontSize: 16.0),
+              InkWell(
+                onTap:(){
+                  //设备管理
+                  Navigator.of(context).push(new PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return new TodayRepairPager();
+                    },
+                  ));
+                },
+                child: Container(
+                  color: Colors.white,
+                  padding: new EdgeInsets.only(
+                    left: 10.0,
+                    right: 7.0,
+                  ),
+                  height: 52.0,
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        child: new Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/mipmap-xhdpi-v4/gteq_icon_main_repairlist.png",
+                              width: 20.0,
+                              height: 20.0,
                             ),
-                          ),
-                        ],
+                            Container(
+                              padding: new EdgeInsets.only(left: 10.0),
+                              child: Text(
+                                "我的维修记录",
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: new Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_login_icon_pwd.png",
-                            height: 15.0,
-                            width: 18.0,
-                          ),
-                        ],
+                      Container(
+                        child: new Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/mipmap-xhdpi-v4/gteq_login_icon_pwd.png",
+                              height: 15.0,
+                              width: 18.0,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -279,11 +290,11 @@ class _SixFragmentState extends State<SixFragment> {
               InkWell(
                 onTap: () {
                   //设备管理
-                  Navigator.of(context).push(new PageRouteBuilder(
+                  /*Navigator.of(context).push(new PageRouteBuilder(
                     pageBuilder: (BuildContext context, _, __) {
                       return new AboutOurPager("hah");
                     },
-                  ));
+                  ));*/
                 },
                 child: Container(
                   color: Colors.white,
@@ -300,7 +311,7 @@ class _SixFragmentState extends State<SixFragment> {
                         child: new Row(
                           children: <Widget>[
                             Image.asset(
-                              "images/mipmap-xhdpi-v4/gteq_icon_main_myorder.png",
+                              "images/mipmap-xhdpi-v4/gteq_icon_main_syn.png",
                               width: 20.0,
                               height: 20.0,
                             ),
@@ -311,7 +322,7 @@ class _SixFragmentState extends State<SixFragment> {
                             Container(
                               padding: new EdgeInsets.only(left: 10.0),
                               child: Text(
-                                "管理工具",
+                                "同步数据",
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ),
