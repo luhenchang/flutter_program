@@ -13,7 +13,8 @@ class FourFramgent extends StatefulWidget {
   _FourFramgentState createState() => new _FourFramgentState(title);
 }
 
-class _FourFramgentState extends State<FourFramgent> {
+class _FourFramgentState extends State<FourFramgent>{
+
   String title;
   List<FourBean> mdata = new List();
 
@@ -23,7 +24,6 @@ class _FourFramgentState extends State<FourFramgent> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loadData();
   }
@@ -70,4 +70,5 @@ class _FourFramgentState extends State<FourFramgent> {
       ),
     );
   }
+
 }

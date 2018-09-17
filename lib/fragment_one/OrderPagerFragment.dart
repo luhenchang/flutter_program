@@ -11,7 +11,7 @@ class OrderPagerFragment extends StatefulWidget {
   _OrderPagerFragmetnState createState() => new _OrderPagerFragmetnState(title);
 }
 
-class _OrderPagerFragmetnState extends State<OrderPagerFragment> {
+class _OrderPagerFragmetnState extends State<OrderPagerFragment>{
   String title;
   List<String>mdata=new List();
   _OrderPagerFragmetnState(String title) {
@@ -19,7 +19,6 @@ class _OrderPagerFragmetnState extends State<OrderPagerFragment> {
   }
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loadData();
   }

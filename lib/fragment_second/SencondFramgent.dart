@@ -12,7 +12,7 @@ class SencondFragment extends StatefulWidget {
   _SencondFragmentState createState() => new _SencondFragmentState(title);
 }
 
-class _SencondFragmentState extends State<SencondFragment> {
+class _SencondFragmentState extends State<SencondFragment>{
   String title;
   List<SecondBean> mdata = new List();
 
@@ -22,7 +22,6 @@ class _SencondFragmentState extends State<SencondFragment> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loadData();
   }
@@ -159,4 +158,5 @@ class _SencondFragmentState extends State<SencondFragment> {
       ),
     );
   }
+
 }

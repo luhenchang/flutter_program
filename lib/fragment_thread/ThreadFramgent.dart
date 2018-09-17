@@ -24,7 +24,6 @@ class _ThreadFramgentState extends State<ThreadFramgent> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loadData();
   }
@@ -90,4 +89,5 @@ images/mipmap-xhdpi-v4/gteq_icon_main_addrepairrecord*/
       ),
     );
   }
+
 }

@@ -1,0 +1,48 @@
+FiveBaseBean alreadyAplayBean = new FiveBaseBean(
+            maintainNumber: response
+                .data['maintainListEntities'][i]
+                    ["maintainNumber"]
+                .toString(),
+            name: response.data['maintainListEntities'][i]["name"]
+                .toString(),
+            equipmentTypeName: response.data['maintainListEntities'][i]
+                    ["equipmentTypeName"]
+                .toString(),
+            number: response.data['maintainListEntities'][i]["number"]
+                .toString(),
+            specModels: response.data['maintainListEntities'][i]
+                    ["specModels"]
+                .toString(),
+            planStartTime: response.data['maintainListEntities'][i]
+                    ["planStartTime"]
+                .toString(),
+            planEndTime: response.data['maintainListEntities'][i]
+                    ["planEndTime"]
+                .toString(),
+            deptName: response.data['maintainListEntities'][i]
+                    ["deptName"]
+                .toString(),
+            operationStaff: response.data['maintainListEntities'][i]
+                    ["operationStaff"]
+                .toString(),
+            installationSite: response.data['maintainListEntities'][i]
+                    ["installationSite"]
+                .toString(),
+            maintainLevelName: response
+                .data['maintainListEntities'][i]
+                    ["maintainLevelName"]
+                .toString(),
+            isStoped: response.data['maintainListEntities'][i]
+                ["isStoped"],
+            stopTime: response.data['maintainListEntities'][i]
+                    ["stopTime"]
+                .toString(),
+            createDate: response.data['maintainListEntities'][i]
+                    ["createDate"]
+                .toString(),
+          );
+          print('aiaiaia=' +
+              response.data['maintainListEntities'][i]
+                      ["maintainNumber"]
+                  .toString());
+          baseData.add(alreadyAplayBean);

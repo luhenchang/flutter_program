@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_program/fragment_second/bean/SecondBean.dart';
 import 'package:flutter_program/fragment_six/view/AboutOurPager.dart';
+import 'package:flutter_program/fragment_six/view/ChangPassworldPager.dart';
 import 'package:flutter_program/fragment_six/view/FaultAplayPager.dart';
+import 'package:flutter_program/fragment_six/view/ManagerTools.dart';
 import 'package:flutter_program/fragment_six/view/TodayRepairPager.dart';
 
 class SixFragment extends StatefulWidget {
@@ -15,7 +17,9 @@ class SixFragment extends StatefulWidget {
   _SixFragmentState createState() => new _SixFragmentState(title);
 }
 
-class _SixFragmentState extends State<SixFragment> {
+class _SixFragmentState extends State<SixFragment> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   String title;
   List<SecondBean> mdata = new List();
 
@@ -27,7 +31,6 @@ class _SixFragmentState extends State<SixFragment> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -180,7 +183,7 @@ class _SixFragmentState extends State<SixFragment> {
                 width: screen_width,
               ),
               InkWell(
-                onTap:(){
+                onTap: () {
                   //设备管理
                   Navigator.of(context).push(new PageRouteBuilder(
                     pageBuilder: (BuildContext context, _, __) {
@@ -238,48 +241,58 @@ class _SixFragmentState extends State<SixFragment> {
                 width: screen_width,
               ),
               //第三部分
-              Container(
-                margin: new EdgeInsets.only(top: 8.0),
-                color: Colors.white,
-                padding: new EdgeInsets.only(
-                  left: 10.0,
-                  right: 7.0,
-                ),
-                height: 52.0,
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      child: new Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_icon_main_pwd.png",
-                            width: 20.0,
-                            height: 20.0,
-                          ),
-                          Container(
-                            padding: new EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              "修改密码",
-                              style: TextStyle(fontSize: 16.0),
+              InkWell(
+                onTap: () {
+                  //设备管理
+                  Navigator.of(context).push(new PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return new ChangPassworldPager();
+                    },
+                  ));
+                },
+                child: Container(
+                  margin: new EdgeInsets.only(top: 8.0),
+                  color: Colors.white,
+                  padding: new EdgeInsets.only(
+                    left: 10.0,
+                    right: 7.0,
+                  ),
+                  height: 52.0,
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        child: new Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/mipmap-xhdpi-v4/gteq_icon_main_pwd.png",
+                              width: 20.0,
+                              height: 20.0,
                             ),
-                          ),
-                        ],
+                            Container(
+                              padding: new EdgeInsets.only(left: 10.0),
+                              child: Text(
+                                "修改密码",
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: new Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_icon_main_go.png",
-                            height: 15.0,
-                            width: 18.0,
-                          ),
-                        ],
+                      Container(
+                        child: new Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/mipmap-xhdpi-v4/gteq_icon_main_go.png",
+                              height: 15.0,
+                              width: 18.0,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -290,11 +303,11 @@ class _SixFragmentState extends State<SixFragment> {
               InkWell(
                 onTap: () {
                   //设备管理
-                  /*Navigator.of(context).push(new PageRouteBuilder(
+                  Navigator.of(context).push(new PageRouteBuilder(
                     pageBuilder: (BuildContext context, _, __) {
-                      return new AboutOurPager("hah");
+                      return new ManagerTools("hah");
                     },
-                  ));*/
+                  ));
                 },
                 child: Container(
                   color: Colors.white,
@@ -349,47 +362,56 @@ class _SixFragmentState extends State<SixFragment> {
                 height: 0.7,
                 width: screen_width,
               ),
-              Container(
-                color: Colors.white,
-                padding: new EdgeInsets.only(
-                  left: 10.0,
-                  right: 7.0,
-                ),
-                height: 52.0,
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      child: new Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_icon_main_tool.png",
-                            width: 20.0,
-                            height: 20.0,
-                          ),
-                          Container(
-                            padding: new EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              "管理工具",
-                              style: TextStyle(fontSize: 16.0),
+              InkWell(
+                onTap:(){
+                  Navigator.of(context).push(new PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return new ManagerTools("hah");
+                    },
+                  ));
+                },
+                child: Container(
+                  color: Colors.white,
+                  padding: new EdgeInsets.only(
+                    left: 10.0,
+                    right: 7.0,
+                  ),
+                  height: 52.0,
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        child: new Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/mipmap-xhdpi-v4/gteq_icon_main_tool.png",
+                              width: 20.0,
+                              height: 20.0,
                             ),
-                          ),
-                        ],
+                            Container(
+                              padding: new EdgeInsets.only(left: 10.0),
+                              child: Text(
+                                "管理工具",
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: new Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/mipmap-xhdpi-v4/gteq_icon_main_go.png",
-                            height: 15.0,
-                            width: 18.0,
-                          ),
-                        ],
+                      Container(
+                        child: new Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/mipmap-xhdpi-v4/gteq_icon_main_go.png",
+                              height: 15.0,
+                              width: 18.0,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -509,4 +531,6 @@ class _SixFragmentState extends State<SixFragment> {
           )),
     );
   }
+
+
 }

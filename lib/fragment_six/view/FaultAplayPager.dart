@@ -6,141 +6,11 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_program/fragment_six/bean/AlreadyAplayBean.dart';
+import 'package:flutter_program/fragment_six/view/FaultRepairPager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Each TabBarView contains a _Page and for each _Page there is a list
 // of _CardData objects. Each _CardData object is displayed by a _CardItem.
-
-const String _kGalleryAssetsPackage = 'flutter_gallery_assets';
-
-class _Page {
-  _Page({this.label});
-
-  final String label;
-
-  String get id => label[0];
-
-  @override
-  String toString() => '$runtimeType("$label")';
-}
-
-class _CardData {
-  const _CardData({this.title, this.imageAsset, this.imageAssetPackage});
-
-  final String title;
-  final String imageAsset;
-  final String imageAssetPackage;
-}
-
-final Map<_Page, List<_CardData>> _allPages = <_Page, List<_CardData>>{
-  new _Page(label: '未提交'): <_CardData>[
-    const _CardData(
-      title: 'Flatwear',
-      imageAsset: 'products/flatwear.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-    const _CardData(
-      title: 'Pine Table',
-      imageAsset: 'products/table.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-    const _CardData(
-      title: 'Blue Cup',
-      imageAsset: 'products/cup.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-    const _CardData(
-      title: 'Tea Set',
-      imageAsset: 'products/teaset.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-    const _CardData(
-      title: 'Desk Set',
-      imageAsset: 'products/deskset.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-    const _CardData(
-      title: 'Blue Linen Napkins',
-      imageAsset: 'products/napkins.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-    const _CardData(
-      title: 'Planters',
-      imageAsset: 'products/planters.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-    const _CardData(
-      title: 'Kitchen Quattro',
-      imageAsset: 'products/kitchen_quattro.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-    const _CardData(
-      title: 'Platter',
-      imageAsset: 'products/platter.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-  ],
-  new _Page(label: '已提交'): <_CardData>[
-    const _CardData(
-      title: 'Cloud-White Dress',
-      imageAsset: 'products/dress.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-    const _CardData(
-      title: 'Ginger Scarf',
-      imageAsset: 'products/scarf.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-    const _CardData(
-      title: 'Blush Sweats',
-      imageAsset: 'products/sweats.png',
-      imageAssetPackage: _kGalleryAssetsPackage,
-    ),
-  ],
-};
-
-class _CardDataItem extends StatelessWidget {
-  const _CardDataItem({this.page, this.data});
-
-  static const double height = 272.0;
-  final _Page page;
-  final _CardData data;
-
-  @override
-  Widget build(BuildContext context) {
-    return new Card(
-      child: new Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: new Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            new Align(
-              alignment:
-                  page.id == 'H' ? Alignment.centerLeft : Alignment.centerRight,
-              child: new CircleAvatar(child: new Text('${page.id}')),
-            ),
-            new SizedBox(
-              width: 144.0,
-              height: 144.0,
-              child: new Image.asset(
-                data.imageAsset,
-                package: data.imageAssetPackage,
-                fit: BoxFit.contain,
-              ),
-            ),
-            new Center(
-              child: new Text(
-                data.title,
-                style: Theme.of(context).textTheme.title,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class FaultAplayPager extends StatefulWidget {
   String title;
@@ -251,107 +121,125 @@ class _FaultAplayPagerState extends State<FaultAplayPager> {
                   return new ListView.builder(
                     itemCount: choice == '已提交' ? 0 : dataAlready.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                        margin: new EdgeInsets.only(
-                            top: index == 0 ? 6.0 : 0.0,
-                            bottom:
-                                index == dataAlready.length - 1 ? 20.0 : 0.0),
-                        child: Card(
-                          elevation: 3.0,
-                          child: Container(
-                            color: Colors.white,
-                            margin: new EdgeInsets.only(
-                                top: 10.0, right: 10.0, left: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  padding: new EdgeInsets.only(
-                                      top: 5.0, left: 10.0, bottom: 5.0),
-                                  child: Text(
-                                    dataAlready[index].equipmentName,
-                                    style: TextStyle(
-                                        color: Colors.blue,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15.0),
-                                  ),
-                                ),
-                                Container(
-                                  padding: new EdgeInsets.only(
-                                      top: 5.0, left: 10.0, bottom: 5.0),
-                                  child: Text(
-                                    "设备编号: " + dataAlready[index].equipmentNum,
-                                    style: TextStyle(
-                                        color: Colors.black26,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14.0),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Container(
-                                      padding: new EdgeInsets.only(
-                                          top: 5.0, left: 10.0, bottom: 5.0),
-                                      child: Text(
-                                        "规格型号: " +
-                                            dataAlready[index].specModels,
-                                        style: TextStyle(
-                                            color: Colors.black26,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 14.0),
-                                      ),
+                      return InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(new PageRouteBuilder(
+                            pageBuilder: (BuildContext context, _, __) {
+                              return new FaultRepairPager(
+                                  dataAlready[index]); //故障报修FaultRepairPager
+                            },
+                          ));
+                        },
+                        child: Container(
+                          margin: new EdgeInsets.only(
+                              top: index == 0 ? 6.0 : 0.0,
+                              bottom:
+                                  index == dataAlready.length - 1 ? 20.0 : 0.0),
+                          child: Card(
+                            elevation: 3.0,
+                            child: Container(
+                              color: Colors.white,
+                              margin: new EdgeInsets.only(
+                                  top: 10.0, right: 10.0, left: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Container(
+                                    padding: new EdgeInsets.only(
+                                        top: 5.0, left: 10.0, bottom: 5.0),
+                                    child: Text(
+                                      dataAlready[index].equipmentName,
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15.0),
                                     ),
-                                    Container(
-                                      child:Image.asset('images/mipmap-xhdpi-v4/gteq_icon_main_go.png',height:15.0,width:15.0,),
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  padding: new EdgeInsets.only(
-                                      top: 5.0, left: 10.0, bottom: 5.0),
-                                  child: Text(
-                                    "记录时间: " + dataAlready[index].createDate,
-                                    style: TextStyle(
-                                        color: Colors.black26,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14.0),
                                   ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Container(
-                                      padding: new EdgeInsets.only(
-                                          top: 5.0, left: 10.0, bottom: 10.0),
-                                      child: Text(
-                                        "单据状态: " + dataAlready[index].state,
-                                        style: TextStyle(
-                                            color: Colors.black26,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 14.0),
-                                      ),
+                                  Container(
+                                    padding: new EdgeInsets.only(
+                                        top: 5.0, left: 10.0, bottom: 5.0),
+                                    child: Text(
+                                      "设备编号: " +
+                                          dataAlready[index].equipmentNum,
+                                      style: TextStyle(
+                                          color: Colors.black26,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 14.0),
                                     ),
-                                    Card(//维修
-                                      margin: new EdgeInsets.only(
-                                         right:25.0),
-                                      color: Colors.teal,
-                                      child: Container(
-                                        margin: new EdgeInsets.only(
-                                            left: 10.0,
-                                            right: 10.0,
-                                            top: 4.0,
-                                            bottom: 4.0),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Container(
+                                        padding: new EdgeInsets.only(
+                                            top: 5.0, left: 10.0, bottom: 5.0),
                                         child: Text(
-                                          '撤销',
-                                          style: TextStyle(color: Colors.white),
+                                          "规格型号: " +
+                                              dataAlready[index].specModels,
+                                          style: TextStyle(
+                                              color: Colors.black26,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 14.0),
                                         ),
                                       ),
+                                      Container(
+                                        child: Image.asset(
+                                          'images/mipmap-xhdpi-v4/gteq_icon_main_go.png',
+                                          height: 15.0,
+                                          width: 15.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Container(
+                                    padding: new EdgeInsets.only(
+                                        top: 5.0, left: 10.0, bottom: 5.0),
+                                    child: Text(
+                                      "记录时间: " + dataAlready[index].createDate,
+                                      style: TextStyle(
+                                          color: Colors.black26,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 14.0),
                                     ),
-                                  ],
-                                )
-                              ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Container(
+                                        padding: new EdgeInsets.only(
+                                            top: 5.0, left: 10.0, bottom: 10.0),
+                                        child: Text(
+                                          "单据状态: " + dataAlready[index].state,
+                                          style: TextStyle(
+                                              color: Colors.black26,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 14.0),
+                                        ),
+                                      ),
+                                      Card(
+                                        //维修
+                                        margin:
+                                            new EdgeInsets.only(right: 25.0),
+                                        color: Colors.teal,
+                                        child: Container(
+                                          margin: new EdgeInsets.only(
+                                              left: 10.0,
+                                              right: 10.0,
+                                              top: 4.0,
+                                              bottom: 4.0),
+                                          child: Text(
+                                            '撤销',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -395,12 +283,58 @@ class _FaultAplayPagerState extends State<FaultAplayPager> {
 
     setState(() {
       for (var i = 0; i < count; i++) {
+        int states=response.data['page']['list'][i]['state'];
+        String stateString;
+        if(states==-1){
+          stateString="已撤销";
+        }else if(states==0){
+          stateString="暂停中";
+        }else if(states==1){
+          stateString="未审核";
+        }else if(states==2){
+          stateString="待分配";
+        }else if(states==3){
+          stateString="待接收";
+        }else if(states==4){
+          stateString="处理中";
+        }else if(states==5){
+          stateString="待确认";
+        }else if(states==6){
+          stateString="已完成";
+        }
         AlreadyAplayBean alreadyAplayBean = new AlreadyAplayBean(
+          /*  var equipmentName;
+  var equipmentNum;
+  var createDate;
+  var specModels;
+  var state;
+  var repairTime;
+  var endTime;
+  var createByName;
+  var repairSheetNum;
+  var workloadStartTime;
+  var workloadEndTime;
+  var auditingDate;
+  var equipmentTypeName;
+  var deptName;
+  var installationSite;
+  var faultName;*/
             response.data['page']['list'][i]['equipmentName'].toString(),
             response.data['page']['list'][i]['equipmentNum'].toString(),
             response.data['page']['list'][i]['createDate'].toString(),
             response.data['page']['list'][i]['specModels'].toString(),
-            response.data['page']['list'][i]['state'].toString());
+            stateString,
+            response.data['page']['list'][i]['repairTime'].toString(),
+            response.data['page']['list'][i]['endTime'].toString(),
+            response.data['page']['list'][i]['createByName'].toString(),
+            response.data['page']['list'][i]['repairSheetNum'].toString(),
+            response.data['page']['list'][i]['workloadStartTime'].toString(),
+            response.data['page']['list'][i]['workloadEndTime'].toString(),
+            response.data['page']['list'][i]['auditingDate'].toString(),
+            response.data['page']['list'][i]['equipmentTypeName'].toString(),
+            response.data['page']['list'][i]['deptName'].toString(),
+            response.data['page']['list'][i]['installationSite'].toString(),
+            response.data['page']['list'][i]['faultName'].toString());
         dataAlready.add(alreadyAplayBean);
       }
     });

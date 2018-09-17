@@ -85,3 +85,6 @@ public static final String GET_MANUFACTURER_LIST = "/tpm/firminfo/list";//获取
 
 
 带有列表的请求参数 : limit : 一页总共条数  page : 当前第几页 ,这个仅对于列表类型的有效
+
+
+

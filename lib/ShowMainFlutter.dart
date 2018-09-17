@@ -18,9 +18,9 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => new _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>{
   var tabImages;
-  var appBarTitles = ['工单', '为了', '管理设备', '管理设备', '计划', '我的'];
+  var appBarTitles = ['统计', '工单', '管理设备', '管理设备', '计划', '我的'];
   BuildContext context;
   int _currentPageIndex = 0;
   GlobalKey _myKey = new GlobalKey();
@@ -206,4 +206,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+
 }
